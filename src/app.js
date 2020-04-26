@@ -1,18 +1,21 @@
 class App {
-  constructor({ width, height, container }) {
+  constructor({ width, height, container, amount }) {
     this.width = width;
     this.height = height;
     this.container = container;
+    this.amount = amount;
     this.shapes = [];
     this.canvas;
     this.startAt;
+    this.angle;
 
     this.init();
   }
 
   init() {
-    this.initCanvas();
     this.startAt = performance.now();
+    this.angle = Math.PI * 2 / this.amount;
+    this.initCanvas();
   }
 
   initCanvas() {
@@ -21,6 +24,30 @@ class App {
     canvas.width = this.width;
     this.container.appendChild(canvas);
     this.ctx = this.canvas.getContext("2d");
+    
+    // clip
+    const angle_side = (Math.PI - this.angle) / 2;
+    const height = this.width / 2 * Math.tan(angle_side);
+    const ctx = this.ctx;
+    this.ctx.beginPath();
+    if(height > this.height) {
+      const halfLength = Math.tan(this.angle / 2) * this.height;
+      ctx.moveTo(this.width / 2 - halfLength, 0);
+      ctx.lineTo(this.width / 2 + halfLength, 0);
+      ctx.lineTo(this.width / 2, this.height);
+      ctx.closePath();
+    } else {
+      ctx.fillStyle = '#000000';
+      ctx.moveTo(this.width / 2, this.height);
+      ctx.lineTo(0, this.height - height);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(this.width, 0);
+      ctx.lineTo(this.width, this.height - height);
+      ctx.fill();
+      ctx.closePath();
+    }
+    debugger
+    ctx.clip();
   }
 
   run() {

@@ -14,11 +14,11 @@ class Circle extends Shape {
         y,
         color,
         radius,
+        distance
       },
       start,
       duration,
       tick,
-      distance
     });
 
     this.initRender();

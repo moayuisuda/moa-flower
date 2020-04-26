@@ -5,6 +5,8 @@
 //
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
+
+// eslint-disable-next-line no-global-assign
 parcelRequire = (function (modules, cache, entry, globalName) {
   // Save the require from previous bundle to this closure if any
   var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
@@ -75,16 +77,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     }, {}];
   };
 
-  var error;
   for (var i = 0; i < entry.length; i++) {
-    try {
-      newRequire(entry[i]);
-    } catch (e) {
-      // Save first error but execute all entries
-      if (!error) {
-        error = e;
-      }
-    }
+    newRequire(entry[i]);
   }
 
   if (entry.length) {
@@ -109,15 +103,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   // Override the current require with this new one
-  parcelRequire = newRequire;
-
-  if (error) {
-    // throw error from earlier, _after updating parcelRequire_
-    throw error;
-  }
-
   return newRequire;
-})({"shape/base.js":[function(require,module,exports) {
+})({"src/shape/base.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -131,7 +118,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Shape = /*#__PURE__*/function () {
+var Shape =
+/*#__PURE__*/
+function () {
   function Shape(_ref) {
     var data = _ref.data,
         render = _ref.render,
@@ -174,7 +163,7 @@ var Shape = /*#__PURE__*/function () {
 }();
 
 exports.Shape = Shape;
-},{}],"shape/circle.js":[function(require,module,exports) {
+},{}],"src/shape/circle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -184,7 +173,7 @@ exports.Circle = void 0;
 
 var _base = require("./base");
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -192,24 +181,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Circle = /*#__PURE__*/function (_Shape) {
-  _inherits(Circle, _Shape);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-  var _super = _createSuper(Circle);
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Circle =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Circle, _Shape);
 
   function Circle(_ref) {
     var _this;
@@ -225,7 +210,7 @@ var Circle = /*#__PURE__*/function (_Shape) {
 
     _classCallCheck(this, Circle);
 
-    _this = _super.call(this, {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Circle).call(this, {
       data: {
         origin: {
           x: x,
@@ -236,13 +221,13 @@ var Circle = /*#__PURE__*/function (_Shape) {
         x: x,
         y: y,
         color: color,
-        radius: radius
+        radius: radius,
+        distance: distance
       },
       start: start,
       duration: duration,
-      tick: tick,
-      distance: distance
-    });
+      tick: tick
+    }));
 
     _this.initRender();
 
@@ -266,7 +251,7 @@ var Circle = /*#__PURE__*/function (_Shape) {
 }(_base.Shape);
 
 exports.Circle = Circle;
-},{"./base":"shape/base.js"}],"shape/triangle.js":[function(require,module,exports) {
+},{"./base":"src/shape/base.js"}],"src/shape/triangle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -276,7 +261,7 @@ exports.Triangle = void 0;
 
 var _base = require("./base");
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -284,24 +269,18 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Triangle = /*#__PURE__*/function (_Shape) {
+var Triangle =
+/*#__PURE__*/
+function (_Shape) {
   _inherits(Triangle, _Shape);
-
-  var _super = _createSuper(Triangle);
 
   function Triangle(_ref) {
     var _this;
@@ -352,7 +331,7 @@ var Triangle = /*#__PURE__*/function (_Shape) {
 }(_base.Shape);
 
 exports.Triangle = Triangle;
-},{"./base":"shape/base.js"}],"app.js":[function(require,module,exports) {
+},{"./base":"src/shape/base.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -360,40 +339,40 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.App = void 0;
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var App = /*#__PURE__*/function () {
+var App =
+/*#__PURE__*/
+function () {
   function App(_ref) {
     var width = _ref.width,
         height = _ref.height,
-        container = _ref.container;
+        container = _ref.container,
+        amount = _ref.amount;
 
     _classCallCheck(this, App);
 
     this.width = width;
     this.height = height;
     this.container = container;
+    this.amount = amount;
     this.shapes = [];
     this.canvas;
     this.startAt;
+    this.angle;
     this.init();
   }
 
   _createClass(App, [{
     key: "init",
     value: function init() {
-      this.initCanvas();
       this.startAt = performance.now();
+      this.angle = Math.PI * 2 / this.amount;
+      this.initCanvas();
     }
   }, {
     key: "initCanvas",
@@ -402,7 +381,32 @@ var App = /*#__PURE__*/function () {
       canvas.height = this.height;
       canvas.width = this.width;
       this.container.appendChild(canvas);
-      this.ctx = this.canvas.getContext("2d");
+      this.ctx = this.canvas.getContext("2d"); // clip
+
+      var angle_side = (Math.PI - this.angle) / 2;
+      var height = this.width / 2 * Math.tan(angle_side);
+      var ctx = this.ctx;
+      this.ctx.beginPath();
+
+      if (height > this.height) {
+        var halfLength = Math.tan(this.angle / 2) * this.height;
+        ctx.moveTo(this.width / 2 - halfLength, 0);
+        ctx.lineTo(this.width / 2 + halfLength, 0);
+        ctx.lineTo(this.width / 2, this.height);
+        ctx.closePath();
+      } else {
+        ctx.fillStyle = '#000000';
+        ctx.moveTo(this.width / 2, this.height);
+        ctx.lineTo(0, this.height - height);
+        ctx.lineTo(0, 0);
+        ctx.lineTo(this.width, 0);
+        ctx.lineTo(this.width, this.height - height);
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      debugger;
+      ctx.clip();
     }
   }, {
     key: "run",
@@ -412,11 +416,12 @@ var App = /*#__PURE__*/function () {
       var frame = function frame(t) {
         _this.ctx.clearRect(0, 0, _this.width, _this.height);
 
-        var _iterator = _createForOfIteratorHelper(_this.shapes),
-            _step;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
         try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          for (var _iterator = _this.shapes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var i = _step.value;
             var time = t - _this.startAt;
             var progresstion = (time - i.start) / i.duration;
@@ -430,9 +435,18 @@ var App = /*#__PURE__*/function () {
             _this.draw(i);
           }
         } catch (err) {
-          _iterator.e(err);
+          _didIteratorError = true;
+          _iteratorError = err;
         } finally {
-          _iterator.f();
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
         }
 
         requestAnimationFrame(frame);
@@ -459,7 +473,7 @@ var App = /*#__PURE__*/function () {
 }();
 
 exports.App = App;
-},{}],"index.js":[function(require,module,exports) {
+},{}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -497,55 +511,58 @@ var _circle = require("./shape/circle");
 var _triangle = require("./shape/triangle");
 
 var _app = require("./app");
-},{"./shape/base":"shape/base.js","./shape/circle":"shape/circle.js","./shape/triangle":"shape/triangle.js","./app":"app.js"}],"instance.js":[function(require,module,exports) {
+},{"./shape/base":"src/shape/base.js","./shape/circle":"src/shape/circle.js","./shape/triangle":"src/shape/triangle.js","./app":"src/app.js"}],"src/instance.js":[function(require,module,exports) {
 "use strict";
 
 var _index = require("./index.js");
 
 var app = new _index.App({
-  width: 1500,
-  height: 1000,
-  container: document.querySelector('#container')
+  width: 200,
+  height: 400,
+  container: document.querySelector('#container'),
+  amount: 6
 });
 var shape0 = new _index.Shape({
   data: {
     origin: {
-      x: 100,
+      x: 0,
       y: 0
     },
-    x: 100,
+    x: 0,
     y: 0,
     distance: {
-      x: 100
+      y: 500
     }
   },
   render: function render(ctx) {
     ctx.fillStyle = "#1E6FFF";
-    ctx.fillRect(this.x, this.y, 400, 400);
+    ctx.fillRect(this.x, this.y, 200, 100);
   },
   tick: function tick(p) {
     var value = Math.pow(p, 2);
-    this.x = this.origin.x + this.distance.x * value;
+    this.y = this.origin.y + this.distance.y * value;
   },
   start: 0,
   duration: 1000
 });
 var shape1 = new _index.Circle({
-  x: 0,
-  y: 0,
   radius: 100,
   color: '#339933',
+  distance: {
+    y: 500
+  },
+  x: 100,
+  y: 0,
   tick: function tick(p) {
     var value = Math.pow(p, 2);
-    console.log(this);
-    this.x = this.origin.x + 200 * value;
+    this.y = this.origin.y + this.distance.y * value;
   },
   start: 0,
   duration: 2000
 });
 app.add(shape0, shape1);
 app.run();
-},{"./index.js":"index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index.js":"src/index.js"}],"C:/Users/Administrator/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -567,47 +584,26 @@ function Module(moduleName) {
 }
 
 module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
 var parent = module.bundle.parent;
 
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56348" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59559" + '/');
 
   ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
     var data = JSON.parse(event.data);
 
     if (data.type === 'update') {
-      var handled = false;
+      console.clear();
+      data.assets.forEach(function (asset) {
+        hmrApply(global.parcelRequire, asset);
+      });
       data.assets.forEach(function (asset) {
         if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-
-          if (didAccept) {
-            handled = true;
-          }
+          hmrAccept(global.parcelRequire, asset.id);
         }
-      }); // Enable HMR for CSS by default.
-
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
       });
-
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
-      }
     }
 
     if (data.type === 'reload') {
@@ -695,7 +691,7 @@ function hmrApply(bundle, asset) {
   }
 }
 
-function hmrAcceptCheck(bundle, id) {
+function hmrAccept(bundle, id) {
   var modules = bundle.modules;
 
   if (!modules) {
@@ -703,27 +699,9 @@ function hmrAcceptCheck(bundle, id) {
   }
 
   if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
+    return hmrAccept(bundle.parent, id);
   }
 
-  if (checkedAssets[id]) {
-    return;
-  }
-
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-
-function hmrAcceptRun(bundle, id) {
   var cached = bundle.cache[id];
   bundle.hotData = {};
 
@@ -748,6 +726,10 @@ function hmrAcceptRun(bundle, id) {
 
     return true;
   }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAccept(global.parcelRequire, id);
+  });
 }
-},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","instance.js"], null)
-//# sourceMappingURL=/instance.5e9fb450.js.map
+},{}]},{},["C:/Users/Administrator/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/instance.js"], null)
+//# sourceMappingURL=/instance.2de8bb10.map
