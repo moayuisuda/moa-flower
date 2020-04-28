@@ -5,6 +5,8 @@
 //
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
+
+// eslint-disable-next-line no-global-assign
 parcelRequire = (function (modules, cache, entry, globalName) {
   // Save the require from previous bundle to this closure if any
   var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
@@ -75,16 +77,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     }, {}];
   };
 
-  var error;
   for (var i = 0; i < entry.length; i++) {
-    try {
-      newRequire(entry[i]);
-    } catch (e) {
-      // Save first error but execute all entries
-      if (!error) {
-        error = e;
-      }
-    }
+    newRequire(entry[i]);
   }
 
   if (entry.length) {
@@ -109,13 +103,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   // Override the current require with this new one
-  parcelRequire = newRequire;
-
-  if (error) {
-    // throw error from earlier, _after updating parcelRequire_
-    throw error;
-  }
-
   return newRequire;
 })({"src/shapes/base.js":[function(require,module,exports) {
 "use strict";
@@ -131,7 +118,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Shape = /*#__PURE__*/function () {
+var Shape =
+/*#__PURE__*/
+function () {
   function Shape(_ref) {
     var data = _ref.data,
         render = _ref.render,
@@ -188,7 +177,7 @@ exports.Circle = void 0;
 
 var _base = require("./base");
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -196,24 +185,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Circle = /*#__PURE__*/function (_Shape) {
-  _inherits(Circle, _Shape);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-  var _super = _createSuper(Circle);
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Circle =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Circle, _Shape);
 
   function Circle(_ref) {
     var _this;
@@ -231,7 +216,7 @@ var Circle = /*#__PURE__*/function (_Shape) {
 
     _classCallCheck(this, Circle);
 
-    _this = _super.call(this, {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Circle).call(this, {
       data: {
         origin: {
           x: x,
@@ -248,7 +233,7 @@ var Circle = /*#__PURE__*/function (_Shape) {
       effect: effect,
       tick: tick,
       rotate: rotate
-    });
+    }));
     _this.origin.radius = radius;
     _this.radius = radius;
 
@@ -284,7 +269,7 @@ exports.Triangle = void 0;
 
 var _base = require("./base");
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -292,24 +277,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Triangle = /*#__PURE__*/function (_Shape) {
-  _inherits(Triangle, _Shape);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-  var _super = _createSuper(Triangle);
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Triangle =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Triangle, _Shape);
 
   function Triangle(_ref) {
     var _this;
@@ -328,7 +309,7 @@ var Triangle = /*#__PURE__*/function (_Shape) {
 
     _classCallCheck(this, Triangle);
 
-    _this = _super.call(this, {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Triangle).call(this, {
       data: {
         origin: {
           x: x,
@@ -347,7 +328,7 @@ var Triangle = /*#__PURE__*/function (_Shape) {
       effect: effect,
       tick: tick,
       rotate: rotate
-    });
+    }));
     _this.origin.length = length;
     _this.length = length;
 
@@ -383,19 +364,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.App = void 0;
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var App = /*#__PURE__*/function () {
+var App =
+/*#__PURE__*/
+function () {
   function App(_ref) {
     var length = _ref.length,
         container = _ref.container,
@@ -455,33 +432,40 @@ var App = /*#__PURE__*/function () {
       var frame = function frame(t) {
         if (!_this.remain) {
           _this.ctx.clearRect(0, 0, _this.length, _this.length);
-
-          _this.ctxIntact.clearRect(0, 0, _this.intactCanvas.width, _this.intactCanvas.height);
-
-          console.log('end');
         }
 
-        var _iterator = _createForOfIteratorHelper(_this.shapes),
-            _step;
+        _this.ctxIntact.clearRect(0, 0, _this.intactCanvas.width, _this.intactCanvas.height);
+
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
         try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          for (var _iterator = _this.shapes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var i = _step.value;
             // caculate time
             var progresstion = (t - i.start) / i.duration;
 
             if (progresstion <= 1) {
               i.tick(progresstion);
-            } else {
-              _this.shapes.splice(_this.shapes.indexOf(i), 1);
+            } else {// this.shapes.splice(this.shapes.indexOf(i), 1);
             }
 
             _this.draw(i);
           }
         } catch (err) {
-          _iterator.e(err);
+          _didIteratorError = true;
+          _iteratorError = err;
         } finally {
-          _iterator.f();
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
         }
 
         _this.drawIntact();
@@ -586,8 +570,8 @@ exports.global = global;
 var colors = ['#0e0d51', '#ffffff', '#005acf', '#01c8fa', '#fd0908', '#02b25e', '#fecf11', '#80809c', '#fce593', '#79d7f3'];
 exports.colors = colors;
 var effects = {
-  circle: ['xor', 'source-over'],
-  triangle: ['xor']
+  circle: ['lighter', 'xor'],
+  triangle: ['source-over', 'xor']
 };
 exports.effects = effects;
 },{}],"src/util.js":[function(require,module,exports) {
@@ -650,11 +634,13 @@ function getEffect() {
 }
 
 function generate() {
-  var length = getLength();
-  var topAngle = getAngle();
+  // const length = getLength();
+  var length = 300;
+  var topAngle = Math.PI / 180 * 120;
   var color = getColor();
-  var start = performance.now();
-  var duration = getDuration();
+  var start = performance.now(); // const duration = getDuration();
+
+  var duration = 19000;
   var effect = getEffect();
   var height = 1 / 2 * length / Math.tan(1 / 2 * topAngle);
   var t1 = new _triangle.Triangle({
@@ -722,6 +708,88 @@ function generate() {
 
 var _default = generate;
 exports.default = _default;
+},{"../../src/shapes/triangle":"src/shapes/triangle.js","../variable":"project/variable.js","../../src/util":"src/util.js"}],"project/layers/layer_triangle2.js":[function(require,module,exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _triangle = require("../../src/shapes/triangle");
+
+var _variable = require("../variable");
+
+var _util = require("../../src/util");
+
+var getLength = (0, _util.randomIn)(150, 400);
+var getAngle = (0, _util.randomInDouble)(Math.PI / 180 * 10, Math.PI / 180 * 20);
+var getDuration = (0, _util.randomIn)(5000, 15000);
+
+function getColor() {
+  return _variable.colors[(0, _util.randomIn)(0, _variable.colors.length - 1)()];
+}
+
+function getEffect() {
+  return _variable.effects.triangle[(0, _util.randomIn)(0, _variable.effects.triangle.length - 1)()];
+}
+
+function generate() {
+  // const length = getLength();
+  var length = 500;
+  var topAngle = Math.PI / 180 * 120;
+  var color = getColor();
+  var start = performance.now(); // const duration = getDuration();
+
+  var duration = 19000;
+  var effect = 'source-over';
+  var height = 1 / 2 * length / Math.tan(1 / 2 * topAngle);
+  var t1 = new _triangle.Triangle({
+    length: length,
+    color: color,
+    rotate: Math.PI / 180 * 112.5,
+    distance: {
+      y: -_variable.global.length / Math.cos(Math.PI / 180 * 22.5) - height,
+      topAngle: -topAngle
+    },
+    x: 0,
+    y: height,
+    topAngle: topAngle,
+    effect: effect,
+    tick: function tick(p) {
+      var value = Math.sqrt(p, 2);
+      this.y = this.origin.y + this.distance.y * value;
+      this.topAngle = this.origin.topAngle + this.distance.topAngle * value;
+    },
+    start: start,
+    duration: duration
+  });
+  var t2 = new _triangle.Triangle({
+    length: length,
+    color: color,
+    distance: {
+      y: -_variable.global.length / Math.cos(Math.PI / 180 * 22.5) - height,
+      topAngle: -topAngle
+    },
+    x: 0,
+    y: height,
+    rotate: Math.PI / 180 * 157.5,
+    topAngle: topAngle,
+    effect: effect,
+    tick: function tick(p) {
+      var value = Math.sqrt(p, 2);
+      this.y = this.origin.y + this.distance.y * value;
+      this.topAngle = this.origin.topAngle + this.distance.topAngle * value;
+    },
+    start: start,
+    duration: duration
+  });
+  return [t1, t2];
+}
+
+var _default = generate;
+exports.default = _default;
 },{"../../src/shapes/triangle":"src/shapes/triangle.js","../variable":"project/variable.js","../../src/util":"src/util.js"}],"project/layers/layer_circle.js":[function(require,module,exports) {
 
 "use strict";
@@ -737,7 +805,7 @@ var _variable = require("../variable");
 
 var _util = require("../../src/util");
 
-var getRadius = (0, _util.randomIn)(150, 400);
+var getRadius = (0, _util.randomIn)(800, 1500);
 var getDuration = (0, _util.randomIn)(5000, 15000);
 
 function getColor() {
@@ -820,33 +888,34 @@ var _variable = require("./variable");
 
 var _layer_triangle = _interopRequireDefault(require("./layers/layer_triangle"));
 
+var _layer_triangle2 = _interopRequireDefault(require("./layers/layer_triangle2"));
+
 var _layer_circle = _interopRequireDefault(require("./layers/layer_circle"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var app = new _index.App({
   length: _variable.global.length,
   // remain: true,
-  container: document.querySelector('#container')
+  container: document.querySelector("#container")
 }); // if you want to every loop haw the same behavior, make sure the attrubute "duration" and "start" of different shapes have the same value
 
+setInterval(function () {}, 2000);
 setInterval(function () {
-  app.add.apply(app, _toConsumableArray((0, _layer_circle.default)()).concat(_toConsumableArray((0, _layer_triangle.default)())));
-}, 2000);
+  app.add.apply(app, _toConsumableArray((0, _layer_triangle.default)()));
+  app.add.apply(app, _toConsumableArray((0, _layer_triangle2.default)()));
+  app.add.apply(app, _toConsumableArray((0, _layer_circle.default)()));
+}, 500);
 app.run();
-},{"../src/index.js":"src/index.js","./variable":"project/variable.js","./layers/layer_triangle":"project/layers/layer_triangle.js","./layers/layer_circle":"project/layers/layer_circle.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../src/index.js":"src/index.js","./variable":"project/variable.js","./layers/layer_triangle":"project/layers/layer_triangle.js","./layers/layer_triangle2":"project/layers/layer_triangle2.js","./layers/layer_circle":"project/layers/layer_circle.js"}],"C:/Users/Administrator/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -868,47 +937,26 @@ function Module(moduleName) {
 }
 
 module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
 var parent = module.bundle.parent;
 
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51724" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55233" + '/');
 
   ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
     var data = JSON.parse(event.data);
 
     if (data.type === 'update') {
-      var handled = false;
+      console.clear();
+      data.assets.forEach(function (asset) {
+        hmrApply(global.parcelRequire, asset);
+      });
       data.assets.forEach(function (asset) {
         if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-
-          if (didAccept) {
-            handled = true;
-          }
+          hmrAccept(global.parcelRequire, asset.id);
         }
-      }); // Enable HMR for CSS by default.
-
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
       });
-
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
-      }
     }
 
     if (data.type === 'reload') {
@@ -996,7 +1044,7 @@ function hmrApply(bundle, asset) {
   }
 }
 
-function hmrAcceptCheck(bundle, id) {
+function hmrAccept(bundle, id) {
   var modules = bundle.modules;
 
   if (!modules) {
@@ -1004,27 +1052,9 @@ function hmrAcceptCheck(bundle, id) {
   }
 
   if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
+    return hmrAccept(bundle.parent, id);
   }
 
-  if (checkedAssets[id]) {
-    return;
-  }
-
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-
-function hmrAcceptRun(bundle, id) {
   var cached = bundle.cache[id];
   bundle.hotData = {};
 
@@ -1049,6 +1079,10 @@ function hmrAcceptRun(bundle, id) {
 
     return true;
   }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAccept(global.parcelRequire, id);
+  });
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","project/index.js"], null)
-//# sourceMappingURL=/project.85defdd7.js.map
+},{}]},{},["C:/Users/Administrator/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","project/index.js"], null)
+//# sourceMappingURL=/project.85defdd7.map

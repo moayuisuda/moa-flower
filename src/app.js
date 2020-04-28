@@ -43,9 +43,9 @@ class App {
     const frame = (t) => {
       if (!this.remain) {
         this.ctx.clearRect(0, 0, this.length, this.length);
-        this.ctxIntact.clearRect(0, 0, this.intactCanvas.width, this.intactCanvas.height);
-        console.log('end');
       }
+
+      this.ctxIntact.clearRect(0, 0, this.intactCanvas.width, this.intactCanvas.height);
 
       for (let i of this.shapes) {
         // caculate time
@@ -53,7 +53,7 @@ class App {
         if (progresstion <= 1) {
           i.tick(progresstion);
         } else {
-          this.shapes.splice(this.shapes.indexOf(i), 1);
+          // this.shapes.splice(this.shapes.indexOf(i), 1);
         }
 
         this.draw(i);

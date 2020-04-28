@@ -2,7 +2,7 @@ import { Circle } from "../../src/shapes/circle";
 import { global, colors, effects } from "../variable";
 import { randomIn } from "../../src/util";
 
-const getRadius = randomIn(150, 400);
+const getRadius = randomIn(800, 1500);
 const getDuration = randomIn(5000, 15000);
 function getColor() {
   return colors[randomIn(0, colors.length - 1)()];
