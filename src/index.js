@@ -1,6 +1,6 @@
-import { Shape } from "./shape/base";
-import { Circle } from "./shape/circle";
-import { Triangle } from "./shape/triangle";
+import { Shape } from './shapes/base';
+import { Circle } from "./shapes/circle";
+import { Triangle } from "./shapes/triangle";
 
 import { App } from "./app";
 

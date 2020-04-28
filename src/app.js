@@ -1,78 +1,99 @@
 class App {
-  constructor({ width, height, container, amount }) {
-    this.width = width;
-    this.height = height;
+  constructor({ length, container, remain = false, loop = false }) {
+    this.length = length;
     this.container = container;
-    this.amount = amount;
+    this.remain = remain;
+    this.loop = loop;
     this.shapes = [];
+    // full pic
+    this.intactCanvas;
+    this.intactCtx;
+    // single element
     this.canvas;
-    this.startAt;
-    this.angle;
+    this.ctx;
+    this.copies;
+    this.startPoint;
 
     this.init();
   }
 
   init() {
-    this.startAt = performance.now();
-    this.angle = Math.PI * 2 / this.amount;
     this.initCanvas();
+    this.initIntactCanvas();
+  }
+
+  initIntactCanvas() {
+    const intactCanvas = (this.intactCanvas = document.createElement("canvas"));
+    intactCanvas.style.backgroundColor = "#0e0d51";
+    this.container.appendChild(intactCanvas);
+    this.intactCanvas.width = this.length * 2;
+    this.intactCanvas.height = this.length * 2;
+    this.ctxIntact = intactCanvas.getContext("2d");
   }
 
   initCanvas() {
     const canvas = (this.canvas = document.createElement("canvas"));
-    canvas.height = this.height;
-    canvas.width = this.width;
+    canvas.height = this.length;
+    canvas.width = this.length;
     this.container.appendChild(canvas);
     this.ctx = this.canvas.getContext("2d");
-    
-    // clip
-    const angle_side = (Math.PI - this.angle) / 2;
-    const height = this.width / 2 * Math.tan(angle_side);
-    const ctx = this.ctx;
-    this.ctx.beginPath();
-    if(height > this.height) {
-      const halfLength = Math.tan(this.angle / 2) * this.height;
-      ctx.moveTo(this.width / 2 - halfLength, 0);
-      ctx.lineTo(this.width / 2 + halfLength, 0);
-      ctx.lineTo(this.width / 2, this.height);
-      ctx.closePath();
-    } else {
-      ctx.fillStyle = '#000000';
-      ctx.moveTo(this.width / 2, this.height);
-      ctx.lineTo(0, this.height - height);
-      ctx.lineTo(0, 0);
-      ctx.lineTo(this.width, 0);
-      ctx.lineTo(this.width, this.height - height);
-      ctx.fill();
-      ctx.closePath();
-    }
-    debugger
-    ctx.clip();
   }
 
   run() {
-    const frame = t => {
-      this.ctx.clearRect(0, 0, this.width, this.height);
+    const frame = (t) => {
+      if (!this.remain) {
+        this.ctx.clearRect(0, 0, this.length, this.length);
+        this.ctxIntact.clearRect(0, 0, this.intactCanvas.width, this.intactCanvas.height);
+        console.log('end');
+      }
 
       for (let i of this.shapes) {
-        const time = t - this.startAt;
-        const progresstion = (time - i.start) / i.duration;
-        if(progresstion <= 1) {
+        // caculate time
+        const progresstion = (t - i.start) / i.duration;
+        if (progresstion <= 1) {
           i.tick(progresstion);
-        };
+        } else {
+          this.shapes.splice(this.shapes.indexOf(i), 1);
+        }
 
         this.draw(i);
       }
-
+      
+      this.drawIntact();
       requestAnimationFrame(frame);
-    }
+    };
 
     frame(performance.now());
   }
 
+  drawIntact() {
+    this.ctxIntact.drawImage(this.canvas, this.length, this.length);
+
+    for (let i = 0; i < 3; i++) {
+      this.ctxIntact.translate(this.length, this.length);
+      this.ctxIntact.rotate((Math.PI * 1) / 2);
+      this.ctxIntact.translate(-this.length, -this.length);
+
+      this.ctxIntact.drawImage(this.canvas, this.length, this.length);
+    }
+
+    this.ctxIntact.translate(this.length, this.length);
+    this.ctxIntact.rotate((Math.PI * 1) / 2);
+    this.ctxIntact.translate(-this.length, -this.length);
+  }
+
   draw(shape) {
     this.ctx.beginPath();
+    this.ctx.globalCompositeOperation = shape.effect
+      ? shape.effect
+      : "source-over";
+
+    if (shape.rotate) {
+      this.ctx.rotate(shape.rotate);
+    }
     shape.render(this.ctx);
+
+    if (shape.rotate) this.ctx.rotate(-shape.rotate);
   }
 
   add(...shapes) {

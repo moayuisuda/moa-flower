@@ -1,10 +1,12 @@
 class Shape {
-  constructor({ data, render, tick, start, duration }) {
+  constructor({ data, render, tick, start, duration, effect, rotate }) {
     this.data = data;
     this.render = render;
     this.tick = tick;
     this.start = start;
     this.duration = duration;
+    this.effect = effect;
+    this.rotate = rotate;
 
     this.init();
   }
